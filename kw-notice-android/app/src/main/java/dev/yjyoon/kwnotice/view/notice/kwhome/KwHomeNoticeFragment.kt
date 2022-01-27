@@ -24,8 +24,6 @@ class KwHomeNoticeFragment : Fragment() {
 
     private val binding by lazy { FragmentKwHomeNoticeBinding.inflate(layoutInflater) }
 
-    private var noticeList: List<KwHomeNotice>? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +37,6 @@ class KwHomeNoticeFragment : Fragment() {
     }
 
     private fun fetchNotices() {
-
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build()
 
         val retrofitService = retrofit.create<RetrofitService>(RetrofitService::class.java)
@@ -52,7 +49,10 @@ class KwHomeNoticeFragment : Fragment() {
                 response: Response<List<KwHomeNotice>>
             ) {
 
-                if(response.isSuccessful) binding.kwHomeNoticeList.adapter = KwHomeNoticeListAdapter(response.body()!!)
+                if(response.isSuccessful) {
+                    binding.kwHomeNoticeList.adapter = KwHomeNoticeListAdapter(response.body()!!)
+                    binding.loadingKwHomeNotice.visibility = View.INVISIBLE
+                }
                 else Toast.makeText(activity, "광운대학교 홈페이지 공지사항을 불러올 수 없습니다\n" + response.message(), Toast.LENGTH_LONG).show()
 
             }
