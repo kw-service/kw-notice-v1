@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">KW Notice</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="kw_home_notice">광운대학교</string>
+    <string name="sw_central_notice">SW중심대학사업단</string>
 </resources>

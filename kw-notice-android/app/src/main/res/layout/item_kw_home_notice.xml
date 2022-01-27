@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/kwHomeNoticeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="[일반] [취업] 2022년 1월 채용 및 취업프로그램 안내(1.27 업데이트)"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <TextView
+            android:id="@+id/kwHomeNoticeDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="작성일 2020-05-27 | 수정일 2022-01-27"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/kwHomeNoticeDepartment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="경력개발팀"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="7dp"
+        android:layout_height="7dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="★" />
+
+</LinearLayout>
