@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="12dp">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -36,6 +39,10 @@
             android:text="작성일 2020-05-27 | 수정일 2022-01-27"
             android:textSize="10sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="2dp" />
+
         <TextView
             android:id="@+id/kwHomeNoticeDepartment"
             android:layout_width="match_parent"
@@ -46,7 +53,7 @@
     </LinearLayout>
 
     <Space
-        android:layout_width="7dp"
+        android:layout_width="12dp"
         android:layout_height="7dp" />
 
     <Button

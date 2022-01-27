@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import dev.yjyoon.kwnotice.databinding.ActivityNoticeBinding
 import dev.yjyoon.kwnotice.view.notice.kwhome.KwHomeNoticeFragment
+import dev.yjyoon.kwnotice.view.notice.swcentral.SwCentralNoticeFragment
 
 class NoticeActivity : AppCompatActivity() {
 
