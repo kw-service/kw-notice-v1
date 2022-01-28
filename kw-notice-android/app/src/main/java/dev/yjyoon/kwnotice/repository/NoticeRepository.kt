@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NoticeRepository(application: Application) {
+class NoticeRepository {
     private val noticeApi = RetrofitInstance.noticeApi
 
     fun getKwHomeNoticeList(): LiveData<List<KwHomeNotice>> {

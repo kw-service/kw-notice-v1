@@ -1,16 +1,26 @@
 package dev.yjyoon.kwnotice.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.repository.NoticeRepository
 
-class NoticeViewModel(application: Application): AndroidViewModel(application) {
-    private val repository = NoticeRepository(application)
+class NoticeViewModel: ViewModel() {
+    private val repository = NoticeRepository()
+    private var kwHomeNotices : LiveData<List<KwHomeNotice>> = loadKwHomeNotices()
 
-    fun getKwHomeNoticeList(): LiveData<List<KwHomeNotice>> {
+    fun filterTagKwHomeNotices(tag: String) {
+        val filteredNotices = MutableLiveData<List<KwHomeNotice>>()
+        filteredNotices.value = kwHomeNotices.value?.filter { notice -> notice.tag == tag }
+        kwHomeNotices = filteredNotices
+    }
+
+    fun getKwHomeNotices(): LiveData<List<KwHomeNotice>> {
+        return kwHomeNotices
+    }
+
+    private fun loadKwHomeNotices(): LiveData<List<KwHomeNotice>> {
         return repository.getKwHomeNoticeList()
     }
 }
