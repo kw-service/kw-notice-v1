@@ -20,6 +20,7 @@ RUN pip install requests
 RUN pip install beautifulsoup4
 RUN pip install pymysql
 RUN pip install selenium
+RUN pip install firebase_admin
 
 COPY --from=build /opt/chrome-linux /opt/chrome
 

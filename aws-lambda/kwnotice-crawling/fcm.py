@@ -1,24 +1,23 @@
-from pyfcm import FCMNotification
-import env
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import messaging
 
-SERVER_KEY = env.FCM_SERVER_KEY
-DEVICE_TOKEN = 'dnQDgh-EQcSkZnC5gyhTz6:APA91bFI6qzsMQ-cOL49vspaJQLbC2VxO5C2WzscSOSEtZBCRU98Y9IiO4U1inM3yrG4x_iVsHkNh5RSKe0-T2ow9tQaGlVXcvMTiBUKdBgz_9xjYnPdsEs01kSRZP3ZyVxSixpSLgKj'
-KW_HOME_TOPIC = 'kw-home'
-SW_CENTRAL_TOPIC = 'sw-central'
+def pushNotification(title, body, topic):
+    credential_file_path = 'kwnotice-crawling/FCMServiceAccountKey.json'
+    cred = credentials.Certificate(credential_file_path)
+    
+    try:
+        push_service = firebase_admin.get_app()
+    except:
+        push_service = firebase_admin.initialize_app(cred)
 
-def pushNotification(title, body, url):
-    fcm = FCMNotification(SERVER_KEY)
-
-    message = {
-        "title" : title,
-        "body" : body,
-    }
-
-    result = fcm.notify_topic_subscribers(
-        topic_name = KW_HOME_TOPIC,
-        data_message = message
+    message = messaging.Message(
+        data = {
+            'title' : title,
+            'body' : body
+        },
+        notification = messaging.Notification(title = title, body = body),
+        topic = topic
     )
 
-    print(result)
-
-pushNotification("ㅎㅇ","ㅇㅇ","https://yjyoon-dev.github")
+    response = messaging.send(message)

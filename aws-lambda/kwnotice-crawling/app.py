@@ -13,3 +13,5 @@ def handler(event, context):
     crawl_sw_central(conn, cursor)
 
     conn.close
+
+handler('d','d')
