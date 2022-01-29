@@ -36,7 +36,9 @@ class SettingFragment : Fragment() {
                 Log.d("fcm", token)
             })
 
-            Firebase.messaging.subscribeToTopic("kw-home")
+            Firebase.messaging.subscribeToTopic("kw-home-new")
+            Firebase.messaging.subscribeToTopic("kw-home-edit")
+            Firebase.messaging.subscribeToTopic("sw-central-new")
         }
         return binding.root
     }

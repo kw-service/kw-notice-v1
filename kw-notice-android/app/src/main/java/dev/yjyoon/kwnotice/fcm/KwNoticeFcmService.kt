@@ -27,22 +27,14 @@ class KwNoticeFcmService: FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
         if(remoteMessage.notification != null) {
-            Log.d("fcm", remoteMessage.notification!!.title + remoteMessage.notification!!.body)
             sendNotification(remoteMessage.notification!!)
-        }
-
-
-        // Check if message contains a notification payload.
-        remoteMessage.notification?.let {
-
         }
     }
 
     private fun sendNotification(notification: RemoteMessage.Notification) {
 
-        val intent = Intent(this, WebViewActivity::class.java).apply {
+        val intent = Intent(this, MainActivity::class.java).apply {
             this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            this.putExtra("url", "https://www.google.com")
         }
 
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)

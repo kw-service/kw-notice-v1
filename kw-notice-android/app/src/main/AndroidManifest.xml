@@ -19,7 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.notice.webview.WebViewActivity" />
+        <activity
+            android:name=".view.notice.webview.WebViewActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="FCM_TAP_ACTIVITY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".fcm.KwNoticeFcmService"
