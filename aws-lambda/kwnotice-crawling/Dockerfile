@@ -27,5 +27,6 @@ COPY --from=build /opt/chrome-linux /opt/chrome
 COPY --from=build /opt/chromedriver /opt/
 
 COPY *.py ./
+COPY *.json ./
 
 CMD [ "app.handler" ]

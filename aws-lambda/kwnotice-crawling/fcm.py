@@ -3,9 +3,9 @@ from firebase_admin import credentials
 from firebase_admin import messaging
 
 def pushNotification(title, body, topic):
-    credential_file_path = 'kwnotice-crawling/FCMServiceAccountKey.json'
+    credential_file_path = './FCMServiceAccountKey.json'
     cred = credentials.Certificate(credential_file_path)
-    
+
     try:
         push_service = firebase_admin.get_app()
     except:
