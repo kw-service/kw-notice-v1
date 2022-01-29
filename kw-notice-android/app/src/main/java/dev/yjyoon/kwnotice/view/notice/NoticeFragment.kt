@@ -21,7 +21,9 @@ class NoticeFragment : Fragment() {
     ): View {
 
         val fragmentList = listOf(KwHomeNoticeFragment(), SwCentralNoticeFragment())
-        binding.noticeViewPager.adapter = NoticeFragmentAdapter(requireActivity(), fragmentList)
+
+        // Fragment 안에서 ViewPager 사용 시 FragmentStateAdapter 에 childFragmentManager 전달 필요
+        binding.noticeViewPager.adapter = NoticeFragmentAdapter(childFragmentManager, lifecycle, fragmentList)
 
         val tabTitles = listOf("광운대학교", "SW중심대학사업단")
         TabLayoutMediator(

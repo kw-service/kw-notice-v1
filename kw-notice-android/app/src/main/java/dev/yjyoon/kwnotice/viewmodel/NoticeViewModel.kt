@@ -19,8 +19,8 @@ class NoticeViewModel: ViewModel() {
     fun filterTagKwHomeNotices(): LiveData<List<KwHomeNotice>> {
         val filteredNotices = MutableLiveData<List<KwHomeNotice>>(kwHomeNotices.value)
 
-        if(tagFilter != "전체")  filteredNotices.value = kwHomeNotices.value?.filter { notice -> notice.tag == tagFilter }
-        if(departmentFilter != "전체 부서") filteredNotices.value = kwHomeNotices.value?.filter { notice -> notice.department == departmentFilter }
+        if(tagFilter != "전체")  filteredNotices.value = filteredNotices.value?.filter { notice -> notice.tag == tagFilter }
+        if(departmentFilter != "전체 부서") filteredNotices.value = filteredNotices.value?.filter { notice -> notice.department == departmentFilter }
         when(sortOption) {
             "최근 수정 순" -> filteredNotices.value = filteredNotices.value?.sortedByDescending{ it.modifiedDate }
             "최근 작성 순" -> filteredNotices.value = filteredNotices.value?.sortedByDescending{ it.postedDate }

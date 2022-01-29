@@ -6,12 +6,14 @@ import androidx.fragment.app.Fragment
 import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.databinding.ActivityMainBinding
 import dev.yjyoon.kwnotice.view.notice.NoticeFragment
+import dev.yjyoon.kwnotice.view.setting.SettingFragment
 
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val noticeFragment = NoticeFragment()
+    private val settingFragment = SettingFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                     when(it.itemId) {
                         R.id.notice -> { noticeFragment }
                         R.id.favorite -> { noticeFragment }
-                        R.id.setting -> { noticeFragment }
+                        R.id.setting -> { settingFragment }
                         else -> { noticeFragment }
                     }
                 )
