@@ -34,9 +34,8 @@ class KwHomeNoticeListAdapter(val onTap: (KwHomeNotice) -> Unit): RecyclerView.A
         }
     }
 
-    fun setNoticeList(noticeList: List<KwHomeNotice>) {
-        this.noticeList = noticeList
+    fun setNoticeList(noticeList: List<KwHomeNotice>?) {
+        this.noticeList = noticeList?: emptyList()
         notifyDataSetChanged()
     }
-
 }

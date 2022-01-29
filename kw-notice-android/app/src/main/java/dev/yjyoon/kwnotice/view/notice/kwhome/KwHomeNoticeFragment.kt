@@ -24,20 +24,26 @@ import dev.yjyoon.kwnotice.viewmodel.NoticeViewModel
 class KwHomeNoticeFragment : Fragment() {
 
     private val binding by lazy { FragmentKwHomeNoticeBinding.inflate(layoutInflater) }
-    val model: NoticeViewModel by viewModels()
+    val viewModel: NoticeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+        val listAdapter = KwHomeNoticeListAdapter { notice: KwHomeNotice ->
+            val intent = Intent(activity, WebViewActivity::class.java)
+            intent.putExtra("url", notice.url)
+            startActivity(intent)
+        }
+
         initRecyclerView()
 
-        model.getKwHomeNotices().observe(viewLifecycleOwner, { notices ->
-            initAdapter(notices)
+        viewModel.loadKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+            initAdapter(listAdapter, notices)
         })
 
-        initListener()
+        initListener(listAdapter)
 
         return binding.root
     }
@@ -50,15 +56,9 @@ class KwHomeNoticeFragment : Fragment() {
         }
     }
 
-    private fun initAdapter(notices: List<KwHomeNotice>) {
-        val listAdapter = KwHomeNoticeListAdapter { notice: KwHomeNotice ->
-            val intent = Intent(activity, WebViewActivity::class.java)
-            intent.putExtra("url", notice.url)
-            startActivity(intent)
-        }
-        listAdapter.setNoticeList(notices)
-
-        binding.kwHomeNoticeList.adapter = listAdapter
+    private fun initAdapter(adapter: KwHomeNoticeListAdapter, notices: List<KwHomeNotice>) {
+        adapter.setNoticeList(notices)
+        binding.kwHomeNoticeList.adapter = adapter
 
         val tagSpinnerAdapter = ArrayAdapter(
             requireContext(),
@@ -83,15 +83,41 @@ class KwHomeNoticeFragment : Fragment() {
         )
     }
 
-    private fun initListener() {
+    private fun initListener(adapter: KwHomeNoticeListAdapter) {
         binding.tagSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                model.filterTagKwHomeNotices(binding.tagSpinner.selectedItem.toString())
+                viewModel.setTagFilter(binding.tagSpinner.selectedItem.toString())
+                viewModel.filterTagKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+                    adapter.setNoticeList(notices)
+                })
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
+        }
 
+        binding.departmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.setDepartmentFilter(binding.departmentSpinner.selectedItem.toString())
+                viewModel.filterTagKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+                    adapter.setNoticeList(notices)
+                })
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
+        binding.sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                viewModel.setSortOption(binding.sortSpinner.selectedItem.toString())
+                viewModel.filterTagKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+                    adapter.setNoticeList(notices)
+                })
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
         }
     }
 
