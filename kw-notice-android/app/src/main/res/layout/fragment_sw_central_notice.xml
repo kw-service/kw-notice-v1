@@ -3,4 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.notice.SwCentralNoticeFragment"/>
+    tools:context=".view.notice.SwCentralNoticeFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/swCentralNoticeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/swCentralProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</FrameLayout>

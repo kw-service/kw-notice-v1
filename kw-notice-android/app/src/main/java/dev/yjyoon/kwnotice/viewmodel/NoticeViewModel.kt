@@ -5,12 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
+import dev.yjyoon.kwnotice.data.remote.model.SwCentralNotice
 import dev.yjyoon.kwnotice.repository.NoticeRepository
 import kotlinx.coroutines.launch
 
 class NoticeViewModel: ViewModel() {
     private val repository = NoticeRepository()
+
     private lateinit var kwHomeNotices : LiveData<List<KwHomeNotice>>
+    private lateinit var swCentralNotices : LiveData<List<SwCentralNotice>>
 
     private var tagFilter = "전체"
     private var departmentFilter = "전체 부서"
@@ -31,9 +34,16 @@ class NoticeViewModel: ViewModel() {
 
    fun loadKwHomeNotices(): LiveData<List<KwHomeNotice>> {
         viewModelScope.launch {
-            kwHomeNotices = repository.getKwHomeNoticeList()
+            kwHomeNotices = repository.getKwHomeNotices()
         }
         return kwHomeNotices
+    }
+
+    fun loadSwCentralNotices(): LiveData<List<SwCentralNotice>> {
+        viewModelScope.launch {
+            swCentralNotices = repository.getSwCentralNotices()
+        }
+        return swCentralNotices
     }
 
     fun setTagFilter(tag: String) {

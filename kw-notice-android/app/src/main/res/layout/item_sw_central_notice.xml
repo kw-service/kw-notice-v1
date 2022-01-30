@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/kwHomeNoticeTitle"
+            android:id="@+id/swCentralNoticeTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -32,21 +32,10 @@
             android:layout_height="5dp" />
 
         <TextView
-            android:id="@+id/kwHomeNoticeDate"
+            android:id="@+id/swCentralNoticeDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="날짜"
-            android:textSize="10sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
-        <TextView
-            android:id="@+id/kwHomeNoticeDepartment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="부서"
             android:textSize="10sp" />
 
     </LinearLayout>

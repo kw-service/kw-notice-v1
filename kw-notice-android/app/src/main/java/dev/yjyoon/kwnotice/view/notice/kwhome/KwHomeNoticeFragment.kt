@@ -24,7 +24,7 @@ import dev.yjyoon.kwnotice.viewmodel.NoticeViewModel
 class KwHomeNoticeFragment : Fragment() {
 
     private val binding by lazy { FragmentKwHomeNoticeBinding.inflate(layoutInflater) }
-    val viewModel: NoticeViewModel by viewModels()
+    private val viewModel: NoticeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +40,11 @@ class KwHomeNoticeFragment : Fragment() {
         initRecyclerView()
 
         viewModel.loadKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+            binding.kwHomeProgressBar.visibility = View.VISIBLE
+
             initAdapter(listAdapter, notices)
+
+            binding.kwHomeProgressBar.visibility = View.INVISIBLE
         })
 
         initListener(listAdapter)
