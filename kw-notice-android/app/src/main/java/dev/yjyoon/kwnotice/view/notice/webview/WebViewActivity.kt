@@ -14,7 +14,6 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val intent = intent
         val url = intent.getStringExtra("url")
 
         val webView = binding.noticeWebView

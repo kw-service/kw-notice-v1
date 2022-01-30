@@ -7,14 +7,10 @@ import android.content.Context
 import android.content.Intent
 import android.media.RingtoneManager
 import android.os.Build
-import android.os.Vibrator
-import android.os.VibratorManager
-import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dev.yjyoon.kwnotice.R
-import dev.yjyoon.kwnotice.view.main.MainActivity
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
 
 
@@ -27,14 +23,18 @@ class FcmService: FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
         if(remoteMessage.notification != null) {
-            sendNotification(remoteMessage.notification!!)
+            sendNotification(remoteMessage)
         }
     }
 
-    private fun sendNotification(notification: RemoteMessage.Notification) {
+    private fun sendNotification(remoteMessage: RemoteMessage) {
 
-        val intent = Intent(this, MainActivity::class.java).apply {
-            this.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        val notification = remoteMessage.notification!!
+        val data = remoteMessage.data
+
+        val intent = Intent(this, WebViewActivity::class.java).apply {
+            this.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            this.putExtra("url", data["url"])
         }
 
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, 0)
