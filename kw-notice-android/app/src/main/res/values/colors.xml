@@ -3,8 +3,8 @@
     <color name="kw_200">#FFC33341</color>
     <color name="kw_500">#FF962732</color>
     <color name="kw_700">#FF741E26</color>
-    <color name="teal_200">#FFFFD757</color>
-    <color name="teal_700">#FFFFC000</color>
+    <color name="teal_200">#FFC33341</color>
+    <color name="teal_700">#FF741E26</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
