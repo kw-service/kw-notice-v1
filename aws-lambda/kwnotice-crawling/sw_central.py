@@ -6,6 +6,7 @@ from fcm import pushNotification
 def crawl_sw_central(conn, cursor):
     BASE_URL = 'https://npsw.kw.ac.kr/site/sub.php?Tid=27&Ctnum=28&Ctid=HM28&page=1&sg=&st=&search_yes=&Cate='
     root_url = 'https://npsw.kw.ac.kr/site'
+    
     page = requests.get(BASE_URL)
     soup = BeautifulSoup(page.content, 'html.parser')
     
@@ -26,6 +27,6 @@ def crawl_sw_central(conn, cursor):
         query = "INSERT INTO SW_CENTRAL(title, posted_date, url, type, crawled_time) VALUES ('{}','{}','{}','{}','{}')".format(title, posted_date, url, type, crawled_time)
         cursor.execute(query)
 
-        pushNotification('SW중심대학사업단에 새로운 공지사항이 올라왔어요!', title, 'sw-central-new')
+        pushNotification('SW중심대학사업단에 새 공지사항이 올라왔어요!', title, url, 'sw-central-new')
     
     conn.commit()

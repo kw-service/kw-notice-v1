@@ -50,11 +50,11 @@ def crawl_kw_home(conn, cursor):
             if str(modified_date) != str(old_modified_date):
                 query = "UPDATE KW_HOME SET modified_date = '{}', crawled_time = '{}' WHERE url = '{}'".format(modified_date, crawled_time, url)
                 
-                pushNotification('광운대학교에 수정된 공지사항이 있어요!', title, 'kw-home-edit')
+                pushNotification('광운대학교에 수정된 공지사항이 있어요!', title, url, 'kw-home-edit')
         else:
             query = "INSERT INTO KW_HOME(title, tag, posted_date, modified_date, department, url, type, crawled_time) VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')".format(title, tag, posted_date, modified_date, department, url, type, crawled_time)
             
-            pushNotification('광운대학교에 새로운 공지사항이 올라왔어요!', title, 'kw-home-new')
+            pushNotification('광운대학교에 새 공지사항이 올라왔어요!', title, url, 'kw-home-new')
         
         if query != '': cursor.execute(query)
     
