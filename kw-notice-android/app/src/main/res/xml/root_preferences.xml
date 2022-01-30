@@ -1,0 +1,49 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <PreferenceCategory
+        app:title="광운대학교"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="kw-home-new"
+            app:title="새로운 공지사항 등록 알림"
+
+            app:iconSpaceReserved="false"/>
+
+        <SwitchPreferenceCompat
+            app:key="kw-home-edit"
+            app:title="기존 공지사항 수정 알림"
+
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="SW중심대학사업단"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            app:key="sw-central-new"
+            app:title="새로운 공지사항 등록 알림"
+
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="앱 정보"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            app:title="개발자 및 피드백"
+            app:summary="yjyoon.dev@gmail.com"
+            app:iconSpaceReserved="false"/>
+
+        <Preference
+            app:title="버전 1.0.0"
+            app:iconSpaceReserved="false"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
