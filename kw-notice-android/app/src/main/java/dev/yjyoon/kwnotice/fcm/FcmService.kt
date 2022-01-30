@@ -18,7 +18,7 @@ import dev.yjyoon.kwnotice.view.main.MainActivity
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
 
 
-class KwNoticeFcmService: FirebaseMessagingService() {
+class FcmService: FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
 
