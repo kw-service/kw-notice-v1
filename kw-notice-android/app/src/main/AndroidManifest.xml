@@ -12,13 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KWNotice"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.main.MainActivity">
+
+        <activity
+            android:name=".view.main.MainActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".view.notice.webview.WebViewActivity"
             android:launchMode="singleTask">
@@ -30,7 +34,7 @@
         </activity>
 
         <service
-            android:name=".fcm.KwNoticeFcmService"
+            android:name=".fcm.FcmService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
