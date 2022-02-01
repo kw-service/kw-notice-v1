@@ -1,8 +1,14 @@
 package dev.yjyoon.kwnotice.view.notice.kwhome
 
+import android.graphics.Color
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.compose.ui.res.colorResource
 import androidx.recyclerview.widget.RecyclerView
+import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.databinding.ItemKwHomeNoticeBinding
 
@@ -12,6 +18,13 @@ class KwHomeNoticeListAdapter(val onTap: (KwHomeNotice) -> Unit): RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemKwHomeNoticeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        val favButton = binding.kwHomeFavButton
+
+        favButton.setOnClickListener {
+            if(favButton.colorFilter == null) favButton.setColorFilter(Color.parseColor("#FFFFC107"), PorterDuff.Mode.SRC_ATOP)
+            else favButton.setColorFilter(null)
+        }
 
         return ViewHolder(binding)
     }

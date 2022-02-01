@@ -5,6 +5,7 @@
     <color name="kw_700">#FF741E26</color>
     <color name="teal_200">#FFC33341</color>
     <color name="teal_700">#FF741E26</color>
+    <color name="favorite">#FFFFC107</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
