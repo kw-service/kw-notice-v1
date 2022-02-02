@@ -15,7 +15,7 @@ import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.databinding.FragmentKwHomeNoticeBinding
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
-import dev.yjyoon.kwnotice.viewmodel.NoticeViewModel
+import dev.yjyoon.kwnotice.viewmodel.notice.NoticeViewModel
 
 
 class KwHomeNoticeFragment : Fragment() {

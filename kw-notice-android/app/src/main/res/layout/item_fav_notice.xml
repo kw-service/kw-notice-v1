@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/favNoticeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="제목"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <TextView
+            android:id="@+id/favNoticeType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="날짜"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="12dp"
+        android:layout_height="7dp" />
+
+    <ImageButton
+        android:id="@+id/favButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.72"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_favorite" />
+
+</LinearLayout>

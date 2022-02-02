@@ -9,6 +9,7 @@ import com.google.firebase.messaging.ktx.messaging
 import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.databinding.ActivityMainBinding
 import dev.yjyoon.kwnotice.util.Constants.Companion.FCM_TOPICS
+import dev.yjyoon.kwnotice.view.favorite.FavoriteFragment
 import dev.yjyoon.kwnotice.view.notice.NoticeFragment
 import dev.yjyoon.kwnotice.view.setting.SettingsFragment
 
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     private val noticeFragment = NoticeFragment()
+    private val favoriteFragment = FavoriteFragment()
     private val settingsFragment = SettingsFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 changeFragment(
                     when(it.itemId) {
                         R.id.notice -> { noticeFragment }
-                        R.id.favorite -> { noticeFragment }
+                        R.id.favorite -> { favoriteFragment }
                         R.id.setting -> { settingsFragment }
                         else -> { noticeFragment }
                     }

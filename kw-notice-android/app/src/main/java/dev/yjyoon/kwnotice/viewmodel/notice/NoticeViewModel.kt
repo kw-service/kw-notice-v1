@@ -1,4 +1,4 @@
-package dev.yjyoon.kwnotice.viewmodel
+package dev.yjyoon.kwnotice.viewmodel.notice
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

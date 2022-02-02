@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.yjyoon.kwnotice.data.remote.model.SwCentralNotice
 import dev.yjyoon.kwnotice.databinding.FragmentSwCentralNoticeBinding
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
-import dev.yjyoon.kwnotice.viewmodel.NoticeViewModel
+import dev.yjyoon.kwnotice.viewmodel.notice.NoticeViewModel
 
 
 class SwCentralNoticeFragment : Fragment() {
