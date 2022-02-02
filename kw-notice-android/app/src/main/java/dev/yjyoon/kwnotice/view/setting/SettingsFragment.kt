@@ -9,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 import dev.yjyoon.kwnotice.R
+import dev.yjyoon.kwnotice.util.Constants.Companion.FCM_TOPICS
 
 class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -27,14 +28,12 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
     }
 
     override fun onSharedPreferenceChanged(prefs: SharedPreferences?, key: String?) {
-        if(key == "kw-home-new" || key == "kw-home-edit" || key == "sw-central-new") {
+        if(key in FCM_TOPICS) {
             if(prefs!!.getBoolean(key, true)) {
-                Firebase.messaging.subscribeToTopic(key)
-                Log.d("fcm", "subscribed$key")
+                Firebase.messaging.subscribeToTopic(key!!)
             }
             else {
-                Firebase.messaging.unsubscribeFromTopic(key)
-                Log.d("fcm", "UN subscribed$key")
+                Firebase.messaging.unsubscribeFromTopic(key!!)
             }
         }
     }

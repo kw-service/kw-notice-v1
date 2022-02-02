@@ -1,15 +1,14 @@
-package dev.yjyoon.kwnotice.view.main
+package dev.yjyoon.kwnotice.view
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock.sleep
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.ktx.messaging
 import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.databinding.ActivityMainBinding
+import dev.yjyoon.kwnotice.util.Constants.Companion.FCM_TOPICS
 import dev.yjyoon.kwnotice.view.notice.NoticeFragment
 import dev.yjyoon.kwnotice.view.setting.SettingsFragment
 
@@ -36,9 +35,7 @@ class MainActivity : AppCompatActivity() {
         val first = prefs.getBoolean("first", true)
 
         if(first) {
-            val topics = listOf("kw-home-new", "kw-home-edit", "sw-central-new")
-
-            for(topic in topics) {
+            for(topic in FCM_TOPICS) {
                 prefs.edit().putBoolean(topic, true).apply()
                 Firebase.messaging.subscribeToTopic(topic)
             }
