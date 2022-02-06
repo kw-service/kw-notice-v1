@@ -25,7 +25,7 @@
 
 # Android
 
-### Tech tags
+### Tech stack
 
 `Android`, `Kotlin`, `DataBinding`, `ViewModel`, `AAC`, `LiveData`, `Flow`, `Coroutine`, `Room`, `Retrofit2`, `FCM`
 
@@ -37,7 +37,7 @@
 
 # Back-end
 
-### Tech tags
+### Tech stack
 
 - `Python`, `Selenium`, `bs4`
 - `AWS`, `Serverless`, `Lambda`, `Event Bridge`, `API Gateway`, `RDS`, `MySQL`, `FCM`
@@ -45,4 +45,4 @@
 
 ### Architecture
 
-![그림](https://user-images.githubusercontent.com/72238126/152692267-6888b97b-d7e7-4d38-94df-83c380c0f8cd.png)
+<img width="80%" src="https://user-images.githubusercontent.com/72238126/152692267-6888b97b-d7e7-4d38-94df-83c380c0f8cd.png" />
