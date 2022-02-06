@@ -16,7 +16,8 @@
 
         <activity
             android:name=".view.MainActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +26,8 @@
         </activity>
 
         <activity
-            android:name=".view.notice.webview.WebViewActivity">
+            android:name=".view.notice.webview.WebViewActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="FCM_CLICK_ACTION_ACTIVITY" />
 

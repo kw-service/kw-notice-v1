@@ -44,7 +44,7 @@
 
         <Preference
             app:key="ver"
-            app:title="버전 1.0.0"
+            app:title="버전 1.0.1"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
 
