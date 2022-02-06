@@ -46,3 +46,9 @@
 ### Architecture
 
 <img width="90%" src="https://user-images.githubusercontent.com/72238126/152692267-6888b97b-d7e7-4d38-94df-83c380c0f8cd.png" />
+
+<br>
+
+# Release
+
+<a href='https://play.google.com/store/apps/details?id=dev.yjyoon.kwnotice&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="20%" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
