@@ -65,10 +65,10 @@ class KwHomeNoticeFragment : Fragment() {
 
         viewModel.loadKwHomeNotices().observe(viewLifecycleOwner, { notices ->
             binding.kwHomeProgressBar.visibility = View.VISIBLE
-
             initAdapter(listAdapter, notices)
-
             binding.kwHomeProgressBar.visibility = View.INVISIBLE
+
+            binding.cannotLoadKwHome.visibility = if(notices.isEmpty()) View.VISIBLE else View.INVISIBLE
         })
 
         viewModel.favKwHomeNoticeIds.observe(viewLifecycleOwner, { ids ->

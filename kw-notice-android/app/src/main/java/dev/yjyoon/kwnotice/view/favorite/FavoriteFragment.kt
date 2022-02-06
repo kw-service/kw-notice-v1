@@ -63,6 +63,7 @@ class FavoriteFragment : Fragment() {
         lifecycle.coroutineScope.launch {
             viewModel.favNotices().collect() {
                 favNoviceListAdapter.submitList(it)
+                binding.emptyList.visibility = if (it.isEmpty()) View.VISIBLE else View.INVISIBLE
             }
         }
 

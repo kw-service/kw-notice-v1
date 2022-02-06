@@ -60,10 +60,10 @@ class SwCentralNoticeFragment : Fragment() {
 
         viewModel.loadSwCentralNotices().observe(viewLifecycleOwner, { notices ->
             binding.swCentralProgressBar.visibility = View.VISIBLE
-
             listAdapter.setNoticeList(notices)
-
             binding.swCentralProgressBar.visibility = View.INVISIBLE
+
+            binding.cannotLoadSwCentral.visibility = if(notices.isEmpty()) View.VISIBLE else View.INVISIBLE
         })
 
         viewModel.favSwCentralNoticeIds.observe(viewLifecycleOwner, { ids ->
