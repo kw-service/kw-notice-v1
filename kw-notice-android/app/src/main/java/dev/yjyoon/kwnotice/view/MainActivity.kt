@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         settingOnFirstLaunch()
-
         setTheme(R.style.Theme_KWNotice)
 
         super.onCreate(savedInstanceState)
