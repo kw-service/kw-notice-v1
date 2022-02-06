@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.yjyoon.kwnotice.KWNoticeApplication
+import dev.yjyoon.kwnotice.R
 import dev.yjyoon.kwnotice.data.db.entity.FavNotice
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.data.remote.model.SwCentralNotice
@@ -70,6 +72,8 @@ class SwCentralNoticeFragment : Fragment() {
             listAdapter.setFavIdList(ids)
         })
 
+        initSpinner()
+
         return binding.root
     }
 
@@ -77,8 +81,31 @@ class SwCentralNoticeFragment : Fragment() {
         binding.swCentralNoticeList.apply {
             this.layoutManager = LinearLayoutManager(activity)
             this.setHasFixedSize(true)
-            this.addItemDecoration(DividerItemDecoration(context, 1))
             this.adapter = adapter
         }
+    }
+
+    private fun initSpinner() {
+        val tagSpinnerAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.item_spinner,
+            listOf("전체")
+        )
+
+        binding.tagSpinner2.adapter = tagSpinnerAdapter
+
+        val departmentSpinnerAdapter = ArrayAdapter(
+            requireContext(),
+            R.layout.item_spinner,
+            listOf("전체 부서")
+        )
+
+        binding.departmentSpinner2.adapter = departmentSpinnerAdapter
+
+        binding.sortSpinner2.adapter = ArrayAdapter(
+            requireContext(),
+            R.layout.item_spinner,
+            listOf("최근 작성 순")
+        )
     }
 }

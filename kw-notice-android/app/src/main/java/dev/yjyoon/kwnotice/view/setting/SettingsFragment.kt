@@ -1,8 +1,11 @@
 package dev.yjyoon.kwnotice.view.setting
 
+import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.google.firebase.ktx.Firebase
@@ -36,5 +39,15 @@ class SettingsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedP
                 Firebase.messaging.unsubscribeFromTopic(key!!)
             }
         }
+    }
+
+    override fun onPreferenceTreeClick(preference: Preference?): Boolean {
+        when(preference?.key) {
+            "dev" -> { startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://github.com/yjyoon-dev/kw-notice"))) }
+            "ver" -> { startActivity(Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://play.google.com/store/apps/details?id=dev.yjyoon.kwnotice"))) }
+            else -> {}
+        }
+
+        return super.onPreferenceTreeClick(preference)
     }
 }

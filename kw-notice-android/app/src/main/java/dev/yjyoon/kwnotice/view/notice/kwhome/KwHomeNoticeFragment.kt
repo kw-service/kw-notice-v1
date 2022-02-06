@@ -84,7 +84,6 @@ class KwHomeNoticeFragment : Fragment() {
         binding.kwHomeNoticeList.apply {
             this.layoutManager = LinearLayoutManager(activity)
             this.setHasFixedSize(true)
-            this.addItemDecoration(DividerItemDecoration(context, 1))
             this.adapter = adapter
         }
     }

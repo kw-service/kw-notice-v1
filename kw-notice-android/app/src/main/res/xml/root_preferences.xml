@@ -37,11 +37,13 @@
         app:iconSpaceReserved="false">
 
         <Preference
-            app:title="개발자 및 피드백"
+            app:key="dev"
+            app:title="개발 및 피드백"
             app:summary="yjyoon.dev@gmail.com"
             app:iconSpaceReserved="false"/>
 
         <Preference
+            app:key="ver"
             app:title="버전 1.0.0"
             app:iconSpaceReserved="false"/>
     </PreferenceCategory>
