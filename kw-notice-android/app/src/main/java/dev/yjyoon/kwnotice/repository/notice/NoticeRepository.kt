@@ -1,4 +1,4 @@
-package dev.yjyoon.kwnotice.repository
+package dev.yjyoon.kwnotice.repository.notice
 
 import android.app.Application
 import android.widget.Toast

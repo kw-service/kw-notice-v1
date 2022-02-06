@@ -12,10 +12,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dev.yjyoon.kwnotice.KWNoticeApplication
 import dev.yjyoon.kwnotice.data.db.entity.FavNotice
+import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.databinding.FragmentFavoriteBinding
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
 import dev.yjyoon.kwnotice.viewmodel.favorite.FavNoticeViewModel
 import dev.yjyoon.kwnotice.viewmodel.favorite.FavNoticeViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -37,26 +40,40 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = binding.favNoticeList
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        val favNoviceListAdapter = FavNoticeListAdapter { notice: FavNotice ->
+        val showNotice: (FavNotice) -> Unit = { notice: FavNotice ->
             val intent = Intent(activity, WebViewActivity::class.java)
             intent.putExtra("url", notice.url)
             startActivity(intent)
         }
-        recyclerView.adapter = favNoviceListAdapter
+
+        val deleteFav: (Long, String) -> Unit = { noticeId: Long, type: String ->
+            CoroutineScope(Dispatchers.Main).launch {
+                viewModel.deleteFavNotice(noticeId, type)
+            }
+        }
+
+        recyclerView = binding.favNoticeList
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val favNoviceListAdapter = FavNoticeListAdapter(
+            showNotice,
+            deleteFav
+        )
 
         lifecycle.coroutineScope.launch {
             viewModel.favNotices().collect() {
                 favNoviceListAdapter.submitList(it)
             }
         }
+
+        recyclerView.adapter = favNoviceListAdapter
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
     }
 }

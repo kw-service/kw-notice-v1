@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 class FavNoticeViewModel(private val favNoticeDao: FavNoticeDao): ViewModel() {
     fun favNotices(): Flow<List<FavNotice>> = favNoticeDao.getAllFavNotice()
     suspend fun addFavNotice(notice: FavNotice) = favNoticeDao.addFavNotice(notice)
-    suspend fun deleteFavNotice(notice: FavNotice) = favNoticeDao.deleteFavNotice(notice)
+    suspend fun deleteFavNotice(noticeId: Long, type: String) = favNoticeDao.deleteFavNotice(noticeId, type)
 }
 
 class FavNoticeViewModelFactory(

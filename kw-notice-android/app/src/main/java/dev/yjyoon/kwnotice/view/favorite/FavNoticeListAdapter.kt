@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.yjyoon.kwnotice.data.db.entity.FavNotice
 import dev.yjyoon.kwnotice.databinding.ItemFavNoticeBinding
 
-class FavNoticeListAdapter(private val onItemClicked: (FavNotice) -> Unit) : ListAdapter<FavNotice, FavNoticeListAdapter.FavNoticeViewHolder>(DiffCallback) {
+class FavNoticeListAdapter(
+    private val onItemClicked: (FavNotice) -> Unit,
+    private val deleteFav: (Long, String) -> Unit
+) : ListAdapter<FavNotice, FavNoticeListAdapter.FavNoticeViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavNoticeViewHolder {
         val viewHolder = FavNoticeViewHolder(
@@ -18,7 +21,7 @@ class FavNoticeListAdapter(private val onItemClicked: (FavNotice) -> Unit) : Lis
                 false
             )
         )
-        viewHolder.itemView.setOnClickListener{
+        viewHolder.itemView.setOnClickListener {
             val position = viewHolder.adapterPosition
             onItemClicked(getItem(position))
         }
@@ -29,10 +32,20 @@ class FavNoticeListAdapter(private val onItemClicked: (FavNotice) -> Unit) : Lis
         holder.bind(getItem(position))
     }
 
-    inner class FavNoticeViewHolder(private val binding: ItemFavNoticeBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class FavNoticeViewHolder(private val binding: ItemFavNoticeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(favNotice: FavNotice) {
             binding.favNoticeTitle.text = favNotice.title
-            binding.favNoticeType.text = favNotice.type
+            binding.favNoticeType.text = when(favNotice.type) {
+                "KW_HOME" -> "광운대학교"
+                "SW_CENTRAL" -> "SW중심대학사업단"
+                else -> "UNKNOWN"
+            }
+            binding.root.setOnClickListener { onItemClicked(favNotice) }
+
+            binding.favButton.setOnClickListener{
+                deleteFav(favNotice.noticeId, favNotice.type)
+            }
         }
     }
 

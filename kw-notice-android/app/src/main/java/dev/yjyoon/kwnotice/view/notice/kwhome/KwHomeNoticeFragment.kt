@@ -11,30 +11,57 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import dev.yjyoon.kwnotice.KWNoticeApplication
 import dev.yjyoon.kwnotice.R
+import dev.yjyoon.kwnotice.data.db.entity.FavNotice
 import dev.yjyoon.kwnotice.data.remote.model.KwHomeNotice
 import dev.yjyoon.kwnotice.databinding.FragmentKwHomeNoticeBinding
 import dev.yjyoon.kwnotice.view.notice.webview.WebViewActivity
 import dev.yjyoon.kwnotice.viewmodel.notice.NoticeViewModel
+import dev.yjyoon.kwnotice.viewmodel.notice.NoticeViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 
 class KwHomeNoticeFragment : Fragment() {
 
     private val binding by lazy { FragmentKwHomeNoticeBinding.inflate(layoutInflater) }
-    private val viewModel: NoticeViewModel by viewModels()
+    private val viewModel: NoticeViewModel by viewModels() {
+        val kwNoticeApplication = activity?.application as KWNoticeApplication
+        NoticeViewModelFactory(
+            kwNoticeApplication.noticeRepository,
+            kwNoticeApplication.favRepository
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        val listAdapter = KwHomeNoticeListAdapter { notice: KwHomeNotice ->
+        val showNotice: (KwHomeNotice) -> Unit = { notice: KwHomeNotice ->
             val intent = Intent(activity, WebViewActivity::class.java)
             intent.putExtra("url", notice.url)
             startActivity(intent)
         }
 
-        initRecyclerView()
+        val addFav: (FavNotice) -> Unit = { notice: FavNotice ->
+            viewModel.addFavNotice(notice)
+        }
+
+        val deleteFav: (Long, String) -> Unit = { noticeId: Long, type: String ->
+            viewModel.deleteFavNotice(noticeId, type)
+        }
+
+        val listAdapter = KwHomeNoticeListAdapter(
+            showNotice,
+            addFav,
+            deleteFav,
+        )
+
+        initRecyclerView(listAdapter)
 
         viewModel.loadKwHomeNotices().observe(viewLifecycleOwner, { notices ->
             binding.kwHomeProgressBar.visibility = View.VISIBLE
@@ -44,22 +71,27 @@ class KwHomeNoticeFragment : Fragment() {
             binding.kwHomeProgressBar.visibility = View.INVISIBLE
         })
 
+        viewModel.favKwHomeNoticeIds.observe(viewLifecycleOwner, { ids ->
+            listAdapter.setFavIdList(ids)
+        })
+
         initListener(listAdapter)
 
         return binding.root
     }
 
-    private fun initRecyclerView() {
+    private fun initRecyclerView(adapter: KwHomeNoticeListAdapter) {
         binding.kwHomeNoticeList.apply {
             this.layoutManager = LinearLayoutManager(activity)
             this.setHasFixedSize(true)
             this.addItemDecoration(DividerItemDecoration(context, 1))
+            this.adapter = adapter
         }
     }
 
     private fun initAdapter(adapter: KwHomeNoticeListAdapter, notices: List<KwHomeNotice>) {
+
         adapter.setNoticeList(notices)
-        binding.kwHomeNoticeList.adapter = adapter
 
         val tagSpinnerAdapter = ArrayAdapter(
             requireContext(),
@@ -97,17 +129,18 @@ class KwHomeNoticeFragment : Fragment() {
             }
         }
 
-        binding.departmentSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                viewModel.setDepartmentFilter(binding.departmentSpinner.selectedItem.toString())
-                viewModel.filterTagKwHomeNotices().observe(viewLifecycleOwner, { notices ->
-                    adapter.setNoticeList(notices)
-                })
-            }
+        binding.departmentSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    viewModel.setDepartmentFilter(binding.departmentSpinner.selectedItem.toString())
+                    viewModel.filterTagKwHomeNotices().observe(viewLifecycleOwner, { notices ->
+                        adapter.setNoticeList(notices)
+                    })
+                }
 
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
             }
-        }
 
         binding.sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -121,5 +154,4 @@ class KwHomeNoticeFragment : Fragment() {
             }
         }
     }
-
 }
