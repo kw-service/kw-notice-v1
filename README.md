@@ -1,8 +1,8 @@
 <p float="left">
-<img width="23%" src="https://user-images.githubusercontent.com/72238126/152691432-00761612-a45e-498d-bd7e-d5a085fff367.png"/>
-<img width="23%" src="https://user-images.githubusercontent.com/72238126/152691435-83b29826-6b88-4139-815f-2ea3abf132e7.png"/>
-<img width="23%" src="https://user-images.githubusercontent.com/72238126/152691439-5585ee2f-5c5e-485d-93c3-3ea519ca4e50.png"/>
-<img width="23%" src="https://user-images.githubusercontent.com/72238126/152691443-aa5e10f0-0000-4d88-8424-b306ed928a75.png"/>
+<img width="24%" src="https://user-images.githubusercontent.com/72238126/152691432-00761612-a45e-498d-bd7e-d5a085fff367.png"/>
+<img width="24%" src="https://user-images.githubusercontent.com/72238126/152691435-83b29826-6b88-4139-815f-2ea3abf132e7.png"/>
+<img width="24%" src="https://user-images.githubusercontent.com/72238126/152691439-5585ee2f-5c5e-485d-93c3-3ea519ca4e50.png"/>
+<img width="24%" src="https://user-images.githubusercontent.com/72238126/152691443-aa5e10f0-0000-4d88-8424-b306ed928a75.png"/>
 </p>
 
 # KW 알리미
