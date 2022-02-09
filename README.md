@@ -52,3 +52,5 @@
 # Release
 
 <a href='https://play.google.com/store/apps/details?id=dev.yjyoon.kwnotice&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img width="20%" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+
+> Play Store 출시 검토 단계 (2/7 출시 )
