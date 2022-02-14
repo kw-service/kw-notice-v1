@@ -45,7 +45,7 @@
 
 ### Architecture
 
-<img width="90%" src="https://user-images.githubusercontent.com/72238126/152692267-6888b97b-d7e7-4d38-94df-83c380c0f8cd.png" />
+<img width="90%" src="https://user-images.githubusercontent.com/72238126/153805958-2e02e06d-a0ea-43f2-a3a1-44f329aa7f53.png" />
 
 <br>
 
