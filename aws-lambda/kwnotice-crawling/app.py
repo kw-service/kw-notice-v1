@@ -12,6 +12,4 @@ def handler(event, context):
     crawl_kw_home(conn, cursor)
     crawl_sw_central(conn, cursor)
 
-    conn.close
-
-handler('d','d')
+    conn.close()
