@@ -39,15 +39,13 @@
 
 ### Tech stack
 
-- `Python`, `Selenium`, `bs4`
+- `Python`, `bs4`
 - `AWS`, `Serverless`, `Lambda`, `Event Bridge`, `API Gateway`, `RDS`, `MySQL`, `FCM`
 - `Docker`, `AWS ECR`
 
 ### Architecture
 
 <img width="90%" src="https://user-images.githubusercontent.com/72238126/153805958-2e02e06d-a0ea-43f2-a3a1-44f329aa7f53.png" />
-
-> 2022-03-27 크롤링 모듈 변경으로 인해 위 사진에서 Docker 컨테이너는 더 이상 사용하지 않습니다.
 
 <br>
 
