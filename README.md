@@ -50,6 +50,10 @@
 <br>
 
 # Contributors
+- [yjyoon-dev](https://github.com/yjyoon-dev)
+  - Android Client 개발
+  - 백엔드 개발 및 서버리스 구축
+
 - [mirusu400](https://github.com/mirusu400)
   - 크롤링 코드 개선
 
